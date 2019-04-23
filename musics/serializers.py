@@ -6,8 +6,6 @@ class MusicSerializer(serializers.ModelSerializer):
         model = Music
         fields = ['id', 'title', 'artist']
 
-
-        
 class ArtistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Artist
@@ -24,3 +22,8 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = ['id','content',]
         
+class MusicDetailSerializer(serializers.ModelSerializer):
+    comment_set = CommentSerializer(many=True)
+    class Meta:
+        model = Music
+        fields = ['id', 'title', 'artist', 'comment_set']
